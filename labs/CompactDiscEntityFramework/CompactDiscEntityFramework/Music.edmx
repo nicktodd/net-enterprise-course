@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="musicModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="compact_discs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+          <Property Name="artist" Type="varchar" MaxLength="30" />
+          <Property Name="tracks" Type="int" />
+          <Property Name="price" Type="money" />
+        </EntityType>
+        <EntityType Name="tracks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cd_id" Type="int" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__tracks__cd_id__1273C1CD">
+          <End Role="compact_discs" Type="Self.compact_discs" Multiplicity="1" />
+          <End Role="tracks" Type="Self.tracks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compact_discs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tracks">
+              <PropertyRef Name="cd_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="musicModelStoreContainer">
+          <EntitySet Name="compact_discs" EntityType="Self.compact_discs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tracks" EntityType="Self.tracks" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tracks__cd_id__1273C1CD" Association="Self.FK__tracks__cd_id__1273C1CD">
+            <End Role="compact_discs" EntitySet="compact_discs" />
+            <End Role="tracks" EntitySet="tracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="musicModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CompactDisc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="artist" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="tracks" Type="Int32" />
+          <Property Name="price" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="trackList" Relationship="Self.FK__tracks__cd_id__1273C1CD" FromRole="compact_discs" ToRole="tracks" />
+        </EntityType>
+        <EntityType Name="Track">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cdId" Type="Int32" Nullable="false" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="compactDisc" Relationship="Self.FK__tracks__cd_id__1273C1CD" FromRole="tracks" ToRole="compact_discs" />
+        </EntityType>
+        <Association Name="FK__tracks__cd_id__1273C1CD">
+          <End Role="compact_discs" Type="musicModel.CompactDisc" Multiplicity="1" />
+          <End Role="tracks" Type="musicModel.Track" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="compact_discs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tracks">
+              <PropertyRef Name="cdId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MusicDbContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CompactDiscs" EntityType="musicModel.CompactDisc" />
+          <EntitySet Name="Tracks" EntityType="musicModel.Track" />
+          <AssociationSet Name="FK__tracks__cd_id__1273C1CD" Association="Self.FK__tracks__cd_id__1273C1CD">
+            <End Role="compact_discs" EntitySet="CompactDiscs" />
+            <End Role="tracks" EntitySet="Tracks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="musicModelStoreContainer" CdmEntityContainer="MusicDbContext">
+          <EntitySetMapping Name="CompactDiscs">
+            <EntityTypeMapping TypeName="musicModel.CompactDisc">
+              <MappingFragment StoreEntitySet="compact_discs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="artist" ColumnName="artist" />
+                <ScalarProperty Name="tracks" ColumnName="tracks" />
+                <ScalarProperty Name="price" ColumnName="price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tracks">
+            <EntityTypeMapping TypeName="musicModel.Track">
+              <MappingFragment StoreEntitySet="tracks">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="cdId" ColumnName="cd_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
