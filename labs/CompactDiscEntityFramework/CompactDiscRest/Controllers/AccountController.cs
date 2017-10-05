@@ -18,7 +18,7 @@ using CompactDiscRest.Providers;
 using CompactDiscRest.Results;
 
 namespace CompactDiscRest.Controllers
-{
+{  
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
