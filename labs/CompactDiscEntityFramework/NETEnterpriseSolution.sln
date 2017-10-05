@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactDiscEntityFramework", "CompactDiscEntityFramework\CompactDiscEntityFramework.csproj", "{F1FA2FC1-2C03-48D7-AF42-FC4DB2A0A4A0}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactDiscRest", "CompactDiscRest\CompactDiscRest.csproj", "{D3137282-7B9C-4F38-8450-08BC14AEBC34}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessagingNMS", "MessagingNMS\MessagingNMS.csproj", "{499ED643-2427-4BCA-B903-05D4DD025988}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompactDiscDAO.Test", "CompactDiscDAO.Test\CompactDiscDAO.Test.csproj", "{50811B31-060F-479A-9B14-66627E77596B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{499ED643-2427-4BCA-B903-05D4DD025988}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{499ED643-2427-4BCA-B903-05D4DD025988}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{499ED643-2427-4BCA-B903-05D4DD025988}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50811B31-060F-479A-9B14-66627E77596B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50811B31-060F-479A-9B14-66627E77596B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50811B31-060F-479A-9B14-66627E77596B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50811B31-060F-479A-9B14-66627E77596B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
