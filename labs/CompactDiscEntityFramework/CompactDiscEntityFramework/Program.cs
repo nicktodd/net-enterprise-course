@@ -53,6 +53,13 @@ namespace CompactDiscEntityFramework
             // but since the context is no longer available we have no access to the database
             var spiceGirlsAlbum = context.CompactDiscs.FirstOrDefault(m => m.artist == "Spice Girls");
 
+            var discsBySpiceGirls = 
+                from disc 
+                in context.CompactDiscs
+                where disc.artist == "Spice Girls"
+                select disc;
+
+
             // this revised query solves the problem by pulling the tracks back as well with an Include
             var spiceGirlsAlbumWithTracks = context.CompactDiscs.Include("trackList").FirstOrDefault(m => m.artist == "Spice Girls");
 
@@ -61,7 +68,13 @@ namespace CompactDiscEntityFramework
             context.CompactDiscs.AddOrUpdate(updateDisc);
             context.SaveChanges();
 
-            CompactDisc discByColdplay = (from disc in context.CompactDiscs where disc.artist == "ColdPlay" select disc).FirstOrDefault();
+            CompactDisc discByColdplay = (from disc 
+                                          in context.CompactDiscs
+                                          where disc.artist == "ColdPlay"
+                                          select disc)
+                                          .FirstOrDefault();
+
+
             discByColdplay.title = "Best of ColdPlay";
             context.SaveChanges();
 

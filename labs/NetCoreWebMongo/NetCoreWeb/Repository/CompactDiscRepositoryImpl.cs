@@ -14,7 +14,7 @@ namespace NetCoreWeb.Repository
 
         public CompactDiscRepositoryImpl()
         {
-            MongoClient client = new MongoClient("mongodb://localhost:27017");
+            MongoClient client = new MongoClient("mongodb://mymongo:27017");
             _db = client.GetDatabase("music");
         }
        

@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  netcoreweb:
+    image: ${DOCKER_REGISTRY}netcoreweb
+    build:
+      context: .
+      dockerfile: NetCoreWeb/Dockerfile
