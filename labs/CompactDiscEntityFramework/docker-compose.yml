@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  compactdiscrest:
+    image: ${DOCKER_REGISTRY}compactdiscrest
+    build:
+      context: .\CompactDiscRest
+      dockerfile: Dockerfile
